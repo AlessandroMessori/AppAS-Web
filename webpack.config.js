@@ -30,6 +30,11 @@ const config = {
                     },
                     exclude: /node_modules/
                 },
+                {//JSON
+                    test: /.json?$/,
+                    loader: "json",
+                    exclude: /node_modules/
+                },
                 {//SASS
                     test: /\.(scss)$/,
                     loader: ExtractTextPlugin.extract("css!sass")

@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import UserForm from "./components/userForm/userForm";
 import Header from "./components/header/header";
+import * as Data from "./staticData/classes.json";
 
 class App extends React.Component {
 
@@ -10,7 +11,7 @@ class App extends React.Component {
         return (
             <div>
                 <Header/>
-                <UserForm/>
+                <UserForm data={Data}/>
             </div>
         );
     }

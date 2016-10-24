@@ -9,16 +9,15 @@ class UserForm extends React.Component {
         super(props);
 
         this.state = {
-            classes: this.getClasses(),
-            numbers: this.getNumbers(),
+            classes: this.getOptions(this.props.data.classes),
+            numbers: this.getOptions(this.props.data.numbers),
             name: "",
             surname: "",
-            cls: "1A",
-            number: "1"
+            cls: "",
+            number: ""
         };
 
-        this.getClasses = this.getClasses.bind(this);
-        this.getNumbers = this.getNumbers.bind(this);
+        this.getOptions = this.getOptions.bind(this);
         this.handleTextChange = this.handleTextChange.bind(this);
         this.getNewUserData = this.getNewUserData.bind(this);
     }
@@ -44,11 +43,15 @@ class UserForm extends React.Component {
                     />
 
                     <select value={this.state.cls}
-                            onChange={e => this.handleTextChange(e, "cls")}>{this.state.classes}
+                            onChange={e => this.handleTextChange(e, "cls")}>
+                        <option value="" disabled selected>Classe</option>
+                        {this.state.classes}
                     </select>
 
                     <select value={this.state.number }
-                            onChange={e => this.handleTextChange(e, "number")}>{this.state.numbers}
+                            onChange={e => this.handleTextChange(e, "number")}>
+                        <option value="" disabled selected>N°</option>
+                        {this.state.numbers}
                     </select>
 
                 </form>
@@ -61,27 +64,10 @@ class UserForm extends React.Component {
         );
     }
 
-    getClasses() {
-
-        const Classes = ["1", "2", "3", "4", "5"];
-        const Sections = ["A", "B", "C", "D", "E", "F"];
-        let classes = [];
-
-        Classes.map(item => {
-            Sections.map(section => classes.push(<option key={item + section}>{item + section}</option>));
-        });
-
-        return classes;
-    }
-
-    getNumbers() {
-        let numbers = [];
-
-        for (let i = 1; i < 31; i++) {
-            numbers.push(<option key={i}>{i}</option>);
-        }
-
-        return numbers;
+    getOptions(data) {
+        let options = [];
+        data.map(item => options.push(<option key={item}>{item}</option>));
+        return options;
     }
 
     handleTextChange(e, source) {
@@ -92,7 +78,7 @@ class UserForm extends React.Component {
 
     getNewUserData() {
 
-        if (!this.state.name || !this.state.surname) {
+        if (!this.state.name || !this.state.surname || !this.state.cls || !this.state.number) {
             alert("Compila tutti i campi");
         }
         else {
