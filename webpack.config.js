@@ -30,9 +30,13 @@ const config = {
                     },
                     exclude: /node_modules/
                 },
-                {//STYLES
-                    test: /\.scss$/,
+                {//SASS
+                    test: /\.(scss)$/,
                     loader: ExtractTextPlugin.extract("css!sass")
+                },
+                {//CSS
+                    test: /\.css$/,
+                    loaders: ["style", "css"]
                 },
                 {//IMAGES
                     test: /\.(jpe?g|png|gif|svg)$/i,
@@ -57,7 +61,13 @@ const config = {
                 title: "appAS Web",
                 inject: false,
                 template: require("html-webpack-template"),
-                appMountId: "root"
+                appMountId: "root",
+                meta: {
+                    viewport: 'width=device-width, initial-scale=1.0'
+                },
+                links: [
+                    "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+                ]
             }),
             new ExtractTextPlugin("styles.css"),
             new webpack.optimize.UglifyJsPlugin({

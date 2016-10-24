@@ -1,6 +1,5 @@
 "use strict";
 import React from "react";
-import {FormGroup, FormControl} from "react-bootstrap";
 import stringService from "../../services/stringService";
 import "./userForm.scss";
 
@@ -30,15 +29,15 @@ class UserForm extends React.Component {
 
                 <h2>Aggiungi Utente</h2>
 
-                <FormGroup id="userForm">
+                <form id="userForm">
 
-                    <FormControl
+                    <input
                         className="inputForm" type="text"
                         placeholder="Nome" value={this.state.name}
                         onChange={e => this.handleTextChange(e, "name")}
                     />
 
-                    <FormControl
+                    <input
                         className="inputForm" type="text"
                         placeholder="Cognome" value={this.state.surname}
                         onChange={e => this.handleTextChange(e, "surname")}
@@ -52,10 +51,11 @@ class UserForm extends React.Component {
                             onChange={e => this.handleTextChange(e, "number")}>{this.state.numbers}
                     </select>
 
-                </FormGroup>
+                </form>
 
 
-                <button onClick={()=>console.log(this.getNewUserData())}>Aggiungi</button>
+                <button className="btn btn-primary" onClick={this.getNewUserData}>Aggiungi
+                </button>
 
             </section>
         );
@@ -92,15 +92,23 @@ class UserForm extends React.Component {
 
     getNewUserData() {
 
-        const mail = this.state.cls + this.state.number + "@ariostospallanzani.com";
-        const username = this.state.name + " " + this.state.surname;
-        const password = stringService.getRandomString(5);
+        if (!this.state.name || !this.state.surname) {
+            alert("Compila tutti i campi");
+        }
+        else {
+            const mail = this.state.cls + this.state.number + "@ariostospallanzani.com";
+            const username = this.state.name + " " + this.state.surname;
+            const password = stringService.getRandomString(5);
 
-        return {
-            mail,
-            password,
-            username
-        };
+            const user = {
+                mail,
+                password,
+                username
+            };
+
+            console.log(user);
+        }
+
     }
 }
 

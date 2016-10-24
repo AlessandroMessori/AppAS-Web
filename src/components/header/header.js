@@ -1,15 +1,13 @@
 "use strict";
 import React from "react";
 import "./header.scss";
-import {PageHeader,} from "react-bootstrap";
 
 class Header extends React.Component {
 
     render() {
         return (
-            <header>
-                <PageHeader>Interfaccia Web App Ariosto Spallanzani!</PageHeader>
-                <hr></hr>
+            <header className="navbar navbar-inverse">
+                <h1 >Gestione Utenti App Ariosto Spallanzani</h1>
             </header>
         );
     }

@@ -15,10 +15,10 @@
   },
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "firebase": "^3.5.0",
     "history": "^4.3.0",
     "react": "^15.3.2",
-    "react-bootstrap": "^0.30.5",
     "react-dom": "^15.3.2",
     "react-router": "^2.8.1"
   },
