@@ -1,7 +1,7 @@
 "use strict";
 import React from "react";
 import {FormGroup, FormControl} from "react-bootstrap";
-import Firebase from "firebase";
+import stringService from "../../services/stringService";
 import "./userForm.scss";
 
 class UserForm extends React.Component {
@@ -94,7 +94,7 @@ class UserForm extends React.Component {
 
         const mail = this.state.cls + this.state.number + "@ariostospallanzani.com";
         const username = this.state.name + " " + this.state.surname;
-        const password = Math.random().toString(18).substring(7);
+        const password = stringService.getRandomString(5);
 
         return {
             mail,
