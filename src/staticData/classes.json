@@ -62,5 +62,9 @@
     "28",
     "29",
     "30"
+  ],
+  "departments": [
+    "Classico",
+    "Scientifico"
   ]
 }
