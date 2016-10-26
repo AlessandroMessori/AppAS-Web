@@ -1,7 +1,7 @@
 #formSection {
 
-  width: 40%;
-  margin-left: 30%;
+  width: 70%;
+  margin-left: 15%;
   border: 1px black solid;
   padding-bottom: 1%;
 
@@ -17,7 +17,7 @@
 
     .inputForm {
       @extend .baseInput;
-      width: 20%;
+      width: 15%;
     }
 
     select {

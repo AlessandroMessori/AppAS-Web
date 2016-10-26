@@ -9,10 +9,12 @@ class UserForm extends React.Component {
         super(props);
 
         this.state = {
+            departments: this.getOptions(this.props.data.departments),
             classes: this.getOptions(this.props.data.classes),
             numbers: this.getOptions(this.props.data.numbers),
             name: "",
             surname: "",
+            sez: "",
             cls: "",
             number: ""
         };
@@ -41,6 +43,12 @@ class UserForm extends React.Component {
                         placeholder="Cognome" value={this.state.surname}
                         onChange={e => this.handleTextChange(e, "surname")}
                     />
+
+                    <select value={this.state.sez}
+                            onChange={e => this.handleTextChange(e, "sez")}>
+                        <option value="" disabled selected>Sezione</option>
+                        {this.state.departments}
+                    </select>
 
                     <select value={this.state.cls}
                             onChange={e => this.handleTextChange(e, "cls")}>
@@ -78,11 +86,18 @@ class UserForm extends React.Component {
 
     getNewUserData() {
 
-        if (!this.state.name || !this.state.surname || !this.state.cls || !this.state.number) {
+        if (!this.state.name || !this.state.surname || !this.state.sez ||!this.state.cls || !this.state.number) {
             alert("Compila tutti i campi");
         }
         else {
-            const mail = this.state.cls + this.state.number + "@ariostospallanzani.com";
+
+            let section;
+            if (this.state.sez == "Classico")
+                section = "C";
+            if (this.state.sez == "Scientifico")
+                section = "S";
+
+            const mail = this.state.cls + section + this.state.number + "@ariostospallanzani.com";
             const username = this.state.name + " " + this.state.surname;
             const password = stringService.getRandomString(5);
 
