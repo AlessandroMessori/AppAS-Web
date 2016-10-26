@@ -1,7 +1,9 @@
+$formWidth: 50%;
+
 #formSection {
 
-  width: 40%;
-  margin-left: 30%;
+  width: $formWidth;
+  margin-left: (100-$formWidth)/2;
   border: 1px black solid;
   padding-bottom: 1%;
 
@@ -24,6 +26,15 @@
       @extend .baseInput;
       width: 10%;
     }
+
+  }
+
+  @media(max-width: 1800px) and (min-width: 800px) {
+    width: 90%;
+    margin-left: 5%;
+  }
+
+  @media(max-width: 799px) {
 
   }
 
