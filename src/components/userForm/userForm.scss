@@ -1,5 +1,4 @@
 $formWidth: 50%;
-
 #formSection {
 
   width: $formWidth;
@@ -14,7 +13,7 @@ $formWidth: 50%;
     .baseInput {
       border-radius: 5px;
       font-size: 17px;
-      margin: 0 2.5%;
+      margin: 1.5% 2.5%;
     }
 
     .inputForm {
@@ -24,17 +23,37 @@ $formWidth: 50%;
 
     select {
       @extend .baseInput;
-      width: 10%;
+      width: 20%;
     }
 
   }
 
-  @media(max-width: 1800px) and (min-width: 800px) {
+  @media(max-width: 1024px) {
     width: 90%;
     margin-left: 5%;
+
+    .inputForm, select {
+      border: grey inset 1px;
+    }
   }
 
-  @media(max-width: 799px) {
+  @media(max-width: 767px) {
+
+    #userForm {
+
+      br {
+        display: none;
+      }
+
+      .inputForm, select {
+        display: block;
+        width: 60%;
+        margin: 3% 20%;
+        border: grey inset 1px;
+        padding: 0 2%;
+      }
+
+    }
 
   }
 

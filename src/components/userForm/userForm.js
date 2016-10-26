@@ -12,8 +12,8 @@ class UserForm extends React.Component {
             departments: this.getOptions(this.props.data.departments),
             classes: this.getOptions(this.props.data.classes),
             numbers: this.getOptions(this.props.data.numbers),
-            name: "",
-            surname: "",
+            name: "Nome",
+            surname: "Cognome",
             sez: "",
             cls: "",
             number: ""
@@ -34,15 +34,15 @@ class UserForm extends React.Component {
 
                     <input
                         className="inputForm" type="text"
-                        placeholder="Nome" value={this.state.name}
-                        onChange={e => this.handleTextChange(e, "name")}
+                        value={this.state.name} onChange={e => this.handleTextChange(e, "name")}
                     />
 
                     <input
                         className="inputForm" type="text"
-                        placeholder="Cognome" value={this.state.surname}
-                        onChange={e => this.handleTextChange(e, "surname")}
+                        value={this.state.surname} onChange={e => this.handleTextChange(e, "surname")}
                     />
+
+                    <br></br>
 
                     <select value={this.state.sez}
                             onChange={e => this.handleTextChange(e, "sez")}>
@@ -86,7 +86,7 @@ class UserForm extends React.Component {
 
     getNewUserData() {
 
-        if (!this.state.name || !this.state.surname || !this.state.sez ||!this.state.cls || !this.state.number) {
+        if (!this.state.name || !this.state.surname || !this.state.sez || !this.state.cls || !this.state.number) {
             alert("Compila tutti i campi");
         }
         else {
