@@ -1,0 +1,17 @@
+$tablePadding : 20%;
+
+#userTableSection{
+
+  padding-right: $tablePadding;
+  padding-left: $tablePadding;
+
+  .table {
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+
+    padding-right: 5%;
+    padding-left: 5%;
+  }
+}
