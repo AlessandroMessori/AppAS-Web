@@ -1,9 +1,11 @@
-$tablePadding : 20%;
+$tablePadding : 2%;
+$tablePadding : 2%;
 
 #userTableSection{
 
   padding-right: $tablePadding;
   padding-left: $tablePadding;
+  text-align: center;
 
   .table {
     width: 100%;

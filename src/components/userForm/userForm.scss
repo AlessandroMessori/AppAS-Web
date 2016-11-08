@@ -1,29 +1,31 @@
-$formWidth: 50%;
+$formWidth: 96%;
 #formSection {
 
   width: $formWidth;
   margin-left: (100-$formWidth)/2;
-  border: 1px black solid;
   padding-bottom: 1%;
+  text-align: center;
 
   #userForm {
     width: 100%;
-    padding: 2.5% 0;
+    padding: 0;
+    text-align: center;
 
     .baseInput {
       border-radius: 5px;
       font-size: 17px;
-      margin: 1.5% 2.5%;
+      margin: 1.5% 25%;
+      display: block;
     }
 
     .inputForm {
       @extend .baseInput;
-      width: 20%;
+      width: 50%;
     }
 
     select {
       @extend .baseInput;
-      width: 20%;
+      width: 50%;
     }
 
   }

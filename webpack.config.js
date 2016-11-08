@@ -72,7 +72,10 @@ const config = {
                 },
                 links: [
                     "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-                ]
+                ],
+                scripts: [
+                    "https://code.jquery.com/jquery-3.1.1.slim.min.js"
+                ],
             }),
             new ExtractTextPlugin("styles.css"),
             new webpack.optimize.UglifyJsPlugin({

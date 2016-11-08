@@ -31,7 +31,7 @@ class UserForm extends React.Component {
         return (
             <section id="formSection">
 
-                <h2>Aggiungi Utente</h2>
+                <h2 className="page-header">Aggiungi Utente</h2>
 
                 <form id="userForm">
 
@@ -45,7 +45,6 @@ class UserForm extends React.Component {
                         value={this.state.surname} onChange={e => this.handleTextChange(e, "surname")}
                     />
 
-                    <br></br>
 
                     <select value={this.state.sez}
                             onChange={e => this.handleTextChange(e, "sez")}>
