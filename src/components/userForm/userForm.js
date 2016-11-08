@@ -1,6 +1,6 @@
 "use strict";
 import React from "react";
-import stringService from "../../services/stringService";
+import AS_SDK from "../../lib/index";
 import "./userForm.scss";
 
 class UserForm extends React.Component {
@@ -8,10 +8,12 @@ class UserForm extends React.Component {
     constructor(props) {
         super(props);
 
+        this.data = AS_SDK.Settings.Configs;
+
         this.state = {
-            departments: this.getOptions(this.props.data.departments),
-            classes: this.getOptions(this.props.data.classes),
-            numbers: this.getOptions(this.props.data.numbers),
+            departments: this.getOptions(this.data.departments),
+            classes: this.getOptions(this.data.classes),
+            numbers: this.getOptions(this.data.numbers),
             name: "Nome",
             surname: "Cognome",
             sez: "",
@@ -22,6 +24,7 @@ class UserForm extends React.Component {
         this.getOptions = this.getOptions.bind(this);
         this.handleTextChange = this.handleTextChange.bind(this);
         this.getNewUserData = this.getNewUserData.bind(this);
+        AS_SDK.Database.UserHandler.getUsers();
     }
 
     render() {
@@ -86,31 +89,27 @@ class UserForm extends React.Component {
 
     getNewUserData() {
 
-        if (!this.state.name || !this.state.surname || !this.state.sez || !this.state.cls || !this.state.number) {
+        const {name, surname, sez, cls, number} = this.state;
+
+        if (!name || !surname || !sez || !cls || !number) {
             alert("Compila tutti i campi");
         }
         else {
 
             let section;
-            if (this.state.sez == "Classico")
+            if (sez == "Classico")
                 section = "C";
             if (this.state.sez == "Scientifico")
                 section = "S";
 
             const mail = this.state.cls + section + this.state.number + "@ariostospallanzani.com";
-            const username = this.state.name + " " + this.state.surname;
-            const password = stringService.getRandomString(5);
+            const password = AS_SDK.Utility.StringHandler.getRandomString(6);
 
-            const user = {
-                mail,
-                password,
-                username
-            };
-
-            console.log(user);
+            AS_SDK.Database.UserHandler.createUser(mail, name, surname, password, section, cls, number, ()=>alert("utente creato"));
         }
 
     }
+
 }
 
 export default UserForm;

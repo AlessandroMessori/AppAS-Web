@@ -4,7 +4,6 @@ import ReactDOM from "react-dom";
 import UserForm from "./components/userForm/userForm";
 import Header from "./components/header/header";
 import UserTable from "./components/userTable/userTable";
-import * as Data from "./staticData/classes.json";
 
 class App extends React.Component {
 
@@ -12,7 +11,7 @@ class App extends React.Component {
         return (
             <div>
                 <Header/>
-                <UserForm data={Data}/>
+                <UserForm/>
                 <UserTable/>
             </div>
         );
@@ -21,4 +20,3 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App/>, document.getElementById("root"));
-
