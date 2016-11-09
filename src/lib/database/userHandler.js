@@ -5,18 +5,19 @@ class UserHandler {
 
     static createUser(mail, name, surname, pass, sect, cls, id, callback) {
 
+        let oldPass = "";
         sect = (sect == "Scientifico") ? "S" : "C";
 
         Firebase.auth().createUserWithEmailAndPassword(mail, pass).catch(error => alert(error));
 
         Firebase.auth().onAuthStateChanged(user => {
-            if (user != null) {
-                user.updateProfile({displayName: name + " " + surname});
-                UserHandler.getUsers();
-                UserHandler.memorizeUserData(mail, name, surname, pass, sect, cls, id, user.uid, callback);
+
+            if (user != null && pass != oldPass) {
+                oldPass = pass;
+                user.updateProfile({displayName: name + " " + surname})
+                    .then(()=>UserHandler.memorizeUserData(mail, name, surname, pass, sect, cls, id, user.uid, callback));
             }
         });
-
     }
 
     static memorizeUserData(mail, name, surname, pass, sect, cls, number, userId, callback) {
@@ -36,11 +37,9 @@ class UserHandler {
 
         Firebase.database().ref("Utenti").update(updates)
             .then(()=> {
-                Firebase.auth().signOut();
                 callback();
             })
             .catch((e)=> {
-                Firebase.auth().signOut();
                 alert(e);
             });
 

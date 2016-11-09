@@ -9,13 +9,15 @@ class Header extends React.Component {
     constructor() {
         super();
 
-        AS_SDK.Database.UserHandler.getUsers(users => {
-            this.setState({items: users});
-        });
-
         this.state = {
             items: []
         };
+    }
+
+    componentDidMount() {
+        AS_SDK.Database.UserHandler.getUsers(users => {
+            this.setState({items: users});
+        });
     }
 
     render() {
