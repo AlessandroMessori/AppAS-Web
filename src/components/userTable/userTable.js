@@ -1,18 +1,20 @@
 "use strict";
 import React from "react";
 import JsonTable from "react-json-table";
+import AS_SDK from "../../lib/index";
 import "./userTable.scss";
 
 class Header extends React.Component {
 
     constructor() {
         super();
+
+        AS_SDK.Database.UserHandler.getUsers(users => {
+            this.setState({items: users});
+        });
+
         this.state = {
-            items: [
-                {Nome: "Mario Rossi", Classe: "1F", Registro: 13, Sezione: "Classico", Admin: "Si", Attivo: "Si"},
-                {Nome: "Paolo Bianchi", Classe: "2D", Registro: 4, Sezione: "Scientifico", Admin: "Si", Attivo: "Si"},
-                {Nome: "Giulio Gialli", Classe: "5E", Registro: 20, Sezione: "Scientifico", Admin: "No", Attivo: "No"}
-            ]
+            items: []
         };
     }
 

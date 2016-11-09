@@ -19,7 +19,7 @@ class UserHandler {
 
     }
 
-    static memorizeUserData(mail, name, surname, pass, sect, cls, id, userId, callback) {
+    static memorizeUserData(mail, name, surname, pass, sect, cls, number, userId, callback) {
         const updates = {};
 
         sect = (sect == "S'") ? "Scientifico" : "Classico";
@@ -31,8 +31,7 @@ class UserHandler {
             pass,
             sect,
             cls,
-            id,
-            admin: false
+            number
         };
 
         Firebase.database().ref("Utenti").update(updates)
@@ -47,11 +46,17 @@ class UserHandler {
 
     }
 
-    static getUsers() {
+    static getUsers(callback) {
         const UsersRef = Firebase.database().ref("Utenti");
         UsersRef.on("value", snapshot => {
-            const users = snapshot.val();
-            console.log(Object.keys(users));
+
+            const keys = Object.keys(snapshot.val());
+            let users = [];
+
+            keys.map(user=> users.push(snapshot.val()[user]));
+
+            callback(users);
+
         });
     }
 
