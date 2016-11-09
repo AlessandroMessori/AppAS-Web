@@ -1,0 +1,61 @@
+#LoginPage {
+
+  margin-top: -50px;
+  header {
+    background-image: url('http://items.pixelentity2.netdna-cdn.com/wp-content/uploads/sites/13/2014/06/bg-1.jpg');
+    background-size: cover;
+    padding-top: 5%;
+    width: 100%;
+    height: 100vh;
+
+    h2 {
+      text-align: center;
+      color: white;
+      font-size: 50px;
+      margin-bottom: 5%;
+    }
+
+  }
+
+  form {
+    padding: 5% 10%;
+    background-color: #F3F3F3;
+    text-align: center;
+    width: 90%;
+    margin: 0 5%;
+
+    h3 {
+      color: blue;
+      font-size: 35px;
+    }
+
+    input {
+      width: 100%;
+      margin-bottom: 5%;
+    }
+
+    button {
+      margin-bottom: 7%;
+      border-radius: 0;
+    }
+
+    p {
+      display: inline;
+      margin-left: 10px;
+    }
+
+  }
+
+  .text-alert {
+    color: red;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+
+  .text-success {
+    color: green;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+
+}

@@ -9,22 +9,22 @@ export default class IconList extends React.Component {
         this.state = {
             routes: [
                 {
-                    "link": "/addUser",
+                    "link": "/admin/addUser",
                     "text": "Aggiungi Utente",
                     "icon": "glyphicon glyphicon-plus"
                 },
                 {
-                    "link": "/users",
+                    "link": "/admin/users",
                     "text": "Gestisci Utenti",
                     "icon": "glyphicon glyphicon-user"
                 },
                 {
-                    "link": "/printUsers",
+                    "link": "/admin/printUsers",
                     "text": "Stampa Dati Utenti",
                     "icon": "glyphicon glyphicon-print"
                 },
                 {
-                    "link": "/login",
+                    "link": "/",
                     "text": "Disconnettiti",
                     "icon": "glyphicon glyphicon-log-out"
                 }

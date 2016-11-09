@@ -6,6 +6,7 @@ import UserForm from "./components/userForm/userForm";
 import Navbar from "./components/navbar/navbar";
 import UserTable from "./components/userTable/userTable";
 import Sidebar from "./components/sidebar/sidebar";
+import LoginPage from "./components/loginPage/loginPage";
 
 class App extends React.Component {
 
@@ -25,10 +26,12 @@ class App extends React.Component {
 
 const cont = (
     <Router history={browserHistory} onUpdate={() => window.scrollTo(0, 0) }>
-        <Route name="app" path="/" component={App}>
-            <IndexRoute component={UserForm}/>
-            <Route path="users" component={UserTable}/>
-            <Route path="addUser" component={UserForm}/>
+        <Route name="app" path="/admin" component={App}>
+            <IndexRoute component={LoginPage}/>
+            <Route path="/admin/users" component={UserTable}/>
+            <Route path="/admin/addUser" component={UserForm}/>
+        </Route>
+        <Route name="login" path="/" component={LoginPage}>
         </Route>
     </Router>
 );

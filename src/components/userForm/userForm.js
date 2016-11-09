@@ -67,7 +67,7 @@ class UserForm extends React.Component {
                 </form>
 
 
-                <button className="btn btn-primary" onClick={this.getNewUserData}>Aggiungi
+                <button className="btn btn-primary btn-lg" onClick={this.getNewUserData}>Aggiungi
                 </button>
 
             </section>
