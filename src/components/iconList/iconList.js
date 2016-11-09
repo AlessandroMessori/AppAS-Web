@@ -1,6 +1,7 @@
 "use strict";
 import React from "react";
-import {Link} from "react-router";
+import {Link, browserHistory} from "react-router";
+import AS_SDK from "../../lib/index";
 
 export default class IconList extends React.Component {
 
@@ -22,14 +23,13 @@ export default class IconList extends React.Component {
                     "link": "/admin/printUsers",
                     "text": "Stampa Dati Utenti",
                     "icon": "glyphicon glyphicon-print"
-                },
-                {
-                    "link": "/",
-                    "text": "Disconnettiti",
-                    "icon": "glyphicon glyphicon-log-out"
                 }
             ]
         };
+    }
+
+    logOut() {
+        AS_SDK.Auth.LoginHandler.logOut(()=> browserHistory.push("/"));
     }
 
     render() {
@@ -41,7 +41,13 @@ export default class IconList extends React.Component {
                             <span className={item.icon}> {item.text}</span>
                         </Link>
                     </li>);
-                }) }
+                })
+                }
+                <li onClick={this.logOut}>
+                    <Link>
+                        <span className="glyphicon glyphicon-log-out"> Disconnettiti</span>
+                    </Link>
+                </li>
             </ul>
         );
     }

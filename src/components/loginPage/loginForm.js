@@ -1,46 +1,53 @@
 "use strict";
 import React from "react";
+import AS_SDK from "../../lib/index";
+import {browserHistory} from "react-router";
 
 export default class LoginForm extends React.Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
             user: {},
-            error: undefined,
-            resultText: this.handleResultText("hide")
+            resultText: null
         };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleResultText = this.handleResultText.bind(this);
-    }
 
+        this.login = this.login.bind(this);
+        this.submit = this.submit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.render = this.render.bind(this);
+    }
 
     handleChange(event) { //save the new values from form in the component state every time they change
         let ob = this.state;
         ob.user[event.target.type] = event.target.value;
         this.setState(ob);
-        //console.log(this.state);
     }
 
-    handleResultText(result) {
-        switch (result) {
-            case "fail":
-                return (
-                    <div className="text-alert">
-                        <p>Bad login information</p>
-                        <br></br>
-                    </div>
-                );
-            case "success":
-                return (
-                    <div className="text-success">
-                        <p>Login Completed</p>
-                        <br></br>
-                    </div>
-                );
-            case "hide":
-                return null;
+    login() {
+        browserHistory.push("/admin/users");
+    }
+
+    submit() {
+
+        if (this.state.user.email && this.state.user.password) {
+            AS_SDK.Auth.LoginHandler.login(this.state.user.email, this.state.user.password, this.login, (error)=> {
+                const resultText = (<div className="text-alert">
+                    <p>{error}</p>
+                    <br/>
+                </div>);
+                this.setState({resultText});
+            });
         }
+        else {
+            const resultText = (<div className="text-alert">
+                <p>Compila Tutti i Campi</p>
+                <br/>
+            </div>);
+            this.setState({resultText});
+        }
+
     }
 
     render() {
@@ -53,7 +60,7 @@ export default class LoginForm extends React.Component {
                     <input type="password" value={this.state.password} className="form-control"
                            onChange={this.handleChange} placeholder="Password" required/>
                     {this.state.resultText}
-                    <button type="button" className="btn btn-primary" onClick={this.props.onSubmit}>
+                    <button type="button" className="btn btn-primary" onClick={this.submit}>
                         Accedi
                     </button>
                     <br/>
@@ -61,4 +68,5 @@ export default class LoginForm extends React.Component {
             </section>
         );
     }
+
 }

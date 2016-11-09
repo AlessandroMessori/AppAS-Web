@@ -7,9 +7,11 @@ import Navbar from "./components/navbar/navbar";
 import UserTable from "./components/userTable/userTable";
 import Sidebar from "./components/sidebar/sidebar";
 import LoginPage from "./components/loginPage/loginPage";
+import AS_SDK from "./lib/index";
+
+AS_SDK.Auth.LoginHandler.logOut();
 
 class App extends React.Component {
-
     render() {
         return (
             <section>

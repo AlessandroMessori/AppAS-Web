@@ -18,6 +18,7 @@
     "appas-sdk": "0.0.3",
     "bootstrap": "^3.3.7",
     "firebase": "^3.5.0",
+    "lodash": "^4.16.6",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-json-table": "^0.1.1",
