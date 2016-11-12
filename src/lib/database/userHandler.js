@@ -14,8 +14,7 @@ class UserHandler {
 
             if (user != null && pass != oldPass) {
                 oldPass = pass;
-                user.updateProfile({displayName: name + " " + surname})
-                    .then(()=>UserHandler.memorizeUserData(mail, name, surname, pass, sect, cls, id, user.uid, callback));
+                UserHandler.memorizeUserData(mail, name, surname, pass, sect, cls, id, user.uid, callback);
             }
         });
     }

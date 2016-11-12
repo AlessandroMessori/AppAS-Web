@@ -45,7 +45,7 @@ export default class IconList extends React.Component {
                 }
                 <li onClick={this.logOut}>
                     <Link>
-                        <span className="glyphicon glyphicon-log-out"> Disconnettiti</span>
+                        <span className="glyphicon glyphicon-log-out"> Esci</span>
                     </Link>
                 </li>
             </ul>

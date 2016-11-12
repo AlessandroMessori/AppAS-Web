@@ -5,7 +5,10 @@ $tablePadding : 2%;
 
   padding-right: $tablePadding;
   padding-left: $tablePadding;
-  text-align: center;
+
+  .page-header{
+    text-align: center;
+  }
 
   .table {
     width: 100%;
