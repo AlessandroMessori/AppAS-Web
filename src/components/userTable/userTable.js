@@ -19,10 +19,12 @@ class UserTable extends React.Component {
             numbers: this.data.numbers,
             cls: "",
             sect: "",
+            searchBar: "",
             filteredItems: [],
             items: [],
-            searchBar: ""
+            columns: []
         };
+
 
         this.render = this.render.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -31,7 +33,24 @@ class UserTable extends React.Component {
 
     componentDidMount() {
         AS_SDK.Database.UserHandler.getUsers(users => {
-            this.setState({items: users, filteredItems: users});
+
+            let columns = Object.keys(users[0]);
+            columns.push(
+                {
+                    key: "key",
+                    label: (<span>elimina</span>),
+                    cell(item, columnKey) {
+                        return (
+                            <button className="btn btn-danger" onClick={()=>alert("ciao")}>
+                                Elimina
+                                <span className="glyphicon glyphicon-trash"/>
+                            </button>
+                        );
+                    }
+                });
+
+            this.setState({items: users, filteredItems: users, columns});
+
         });
     }
 
@@ -68,7 +87,7 @@ class UserTable extends React.Component {
 
                     <button className="btn btn-default clearBtn" onClick={this.clearFilters}>Pulisci Filtri</button>
                 </section>
-                <JsonTable rows={this.state.filteredItems} className="table"/>
+                <JsonTable rows={this.state.filteredItems} columns={this.state.columns} className="table"/>
             </section>
         );
     }
