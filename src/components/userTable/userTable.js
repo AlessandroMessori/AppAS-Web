@@ -51,13 +51,13 @@ class UserTable extends React.Component {
                     }
                 });
 
-            const splitItems = AS_SDK.Utility.ArrayHandler.splitItems(users, this.state.maxLength);
+            //const splitItems = AS_SDK.Utility.ArrayHandler.splitItems(users, this.state.maxLength);
 
             this.setState({
                 items: users,
-                filteredItems: splitItems[this.state.index],
+                filteredItems: users,
                 columns,
-                navLength: splitItems.length
+               //s navLength: splitItems.length
             });
 
         });
