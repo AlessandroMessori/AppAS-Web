@@ -1,7 +1,9 @@
 "use strict";
 import React from "react";
 import AS_SDK from "../../lib/index";
+import ClassSelector from "../classSelector/classSelector";
 import "./userForm.scss";
+
 
 class UserForm extends React.Component {
 
@@ -11,9 +13,9 @@ class UserForm extends React.Component {
         this.data = AS_SDK.Settings.Configs;
 
         this.state = {
-            departments: this.getOptions(this.data.departments),
-            classes: this.getOptions(this.data.classes),
-            numbers: this.getOptions(this.data.numbers),
+            departments: this.data.departments,
+            classes: this.data.classes,
+            numbers: this.data.numbers,
             name: "Nome",
             surname: "Cognome",
             sez: "",
@@ -21,7 +23,6 @@ class UserForm extends React.Component {
             number: ""
         };
 
-        this.getOptions = this.getOptions.bind(this);
         this.handleTextChange = this.handleTextChange.bind(this);
         this.getNewUserData = this.getNewUserData.bind(this);
         AS_SDK.Database.UserHandler.getUsers();
@@ -31,7 +32,7 @@ class UserForm extends React.Component {
         return (
             <section id="formSection">
 
-                <h2 className="page-header">Aggiungi Utente</h2>
+                <h2 className="page-header">Aggiungi Studente</h2>
 
                 <form id="userForm">
 
@@ -45,40 +46,23 @@ class UserForm extends React.Component {
                         value={this.state.surname} onChange={e => this.handleTextChange(e, "surname")}
                     />
 
+                    <ClassSelector value={this.state.sez} onChange={e => this.handleTextChange(e, "sez")}
+                                   options={this.state.departments} placeholder="Sezione"/>
 
-                    <select value={this.state.sez}
-                            onChange={e => this.handleTextChange(e, "sez")}>
-                        <option value="" disabled selected>Sezione</option>
-                        {this.state.departments}
-                    </select>
+                    <ClassSelector value={this.state.cls} onChange={e => this.handleTextChange(e, "cls")}
+                                   options={this.state.classes} placeholder="Classe"/>
 
-                    <select value={this.state.cls}
-                            onChange={e => this.handleTextChange(e, "cls")}>
-                        <option value="" disabled selected>Classe</option>
-                        {this.state.classes}
-                    </select>
-
-                    <select value={this.state.number }
-                            onChange={e => this.handleTextChange(e, "number")}>
-                        <option value="" disabled selected>N°</option>
-                        {this.state.numbers}
-                    </select>
+                    <ClassSelector value={this.state.number} onChange={e => this.handleTextChange(e, "number")}
+                                   options={this.state.numbers} placeholder="N°"/>
 
                 </form>
 
-
                 <button className="btn btn-primary btn-lg" onClick={this.getNewUserData}>Aggiungi
                 </button>
-
             </section>
         );
     }
 
-    getOptions(data) {
-        let options = [];
-        data.map(item => options.push(<option key={item}>{item}</option>));
-        return options;
-    }
 
     handleTextChange(e, source) {
         const oldState = this.state;

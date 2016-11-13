@@ -22,7 +22,7 @@ class UserHandler {
     static memorizeUserData(mail, name, surname, pass, sect, cls, number, userId, callback) {
         const updates = {};
 
-        sect = (sect == "S'") ? "Scientifico" : "Classico";
+        sect = (sect == "S") ? "Scientifico" : "Classico";
 
         updates["/" + userId] = {
             mail,

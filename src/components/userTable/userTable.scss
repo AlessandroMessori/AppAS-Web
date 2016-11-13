@@ -1,13 +1,29 @@
-$tablePadding : 2%;
-$tablePadding : 2%;
+$tablePadding: 2%;
+$tablePadding: 2%;
 
-#userTableSection{
+#userTableSection {
 
   padding-right: $tablePadding;
   padding-left: $tablePadding;
 
-  .page-header{
+  .page-header {
     text-align: center;
+  }
+
+  .clearBtn {
+    position: relative;
+    left: 35px;
+    bottom: 12px;
+  }
+
+  select {
+    font-size: 18px;
+    position: relative;
+    bottom: 10px;
+    left: 20px;
+    margin-right: 1%;
+    background-color: white;
+
   }
 
   .table {
