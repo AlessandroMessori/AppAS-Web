@@ -68,7 +68,7 @@ class UserTable extends React.Component {
 
         oldState[source] = e.target.value;
         oldState.filteredItems = AS_SDK.Utility.FilterHandler.filterItems(oldState.items, oldState.searchBar, oldState.cls, oldState.sect);
-        oldState.filteredItems = AS_SDK.Utility.ArrayHandler.splitItems(oldState.filteredItems, 7)[0];
+
         this.setState(oldState);
     }
 
