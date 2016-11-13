@@ -6,7 +6,7 @@ import ClassSelector from "../classSelector/classSelector";
 import AS_SDK from "../../lib/index";
 import "./userTable.scss";
 
-class Header extends React.Component {
+class UserTable extends React.Component {
 
     constructor(props) {
         super(props);
@@ -75,4 +75,4 @@ class Header extends React.Component {
 
 }
 
-export default Header;
+export default UserTable;

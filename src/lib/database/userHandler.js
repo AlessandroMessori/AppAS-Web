@@ -23,7 +23,7 @@ class UserHandler {
         const updates = {};
 
         sect = (sect == "S") ? "Scientifico" : "Classico";
-
+        console.log(sect);
         updates["/" + userId] = {
             mail,
             name,

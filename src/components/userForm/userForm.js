@@ -82,13 +82,13 @@ class UserForm extends React.Component {
             let section;
             if (sez == "Classico")
                 section = "C";
-            if (this.state.sez == "Scientifico")
+            if (sez == "Scientifico")
                 section = "S";
 
             const mail = this.state.cls + section + this.state.number + "@ariostospallanzani.com";
             const password = AS_SDK.Utility.StringHandler.getRandomString(6);
 
-            AS_SDK.Database.UserHandler.createUser(mail, name, surname, password, section, cls, number, ()=>alert("utente creato"));
+            AS_SDK.Database.UserHandler.createUser(mail, name, surname, password, sez, cls, number, ()=>alert("utente creato"));
         }
 
     }
