@@ -14,7 +14,7 @@ class Navigator extends React.Component {
         let el = [];
 
         for (let i = 1; i <= this.props.length; i++) {
-            el.push(<li key={i}>
+            el.push(<li key={i} onClick={()=>this.props.onClick(i - 1)}>
                 <a href="#">{i}</a>
             </li>);
         }

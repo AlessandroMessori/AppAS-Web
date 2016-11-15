@@ -25,12 +25,14 @@ class UserTable extends React.Component {
             sect: "",
             searchBar: "",
             filteredItems: [],
+            splitItems: [],
             items: [],
             columns: []
         };
 
         this.render = this.render.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.changePage = this.changePage.bind(this);
         this.clearFilters = this.clearFilters.bind(this);
     }
 
@@ -51,13 +53,14 @@ class UserTable extends React.Component {
                     }
                 });
 
-            //const splitItems = AS_SDK.Utility.ArrayHandler.splitItems(users, this.state.maxLength);
+            const splitItems = AS_SDK.Utility.ArrayHandler.splitItems(users, this.state.maxLength);
 
             this.setState({
                 items: users,
-                filteredItems: users,
+                filteredItems: splitItems[this.state.index],
+                splitItems,
                 columns,
-               //s navLength: splitItems.length
+                navLength: splitItems.length
             });
 
         });
@@ -67,17 +70,33 @@ class UserTable extends React.Component {
         const oldState = this.state;
 
         oldState[source] = e.target.value;
-        oldState.filteredItems = AS_SDK.Utility.FilterHandler.filterItems(oldState.items, oldState.searchBar, oldState.cls, oldState.sect);
+        const filteredItems = AS_SDK.Utility.FilterHandler.filterItems(oldState.items, oldState.searchBar, oldState.cls, oldState.sect);
+        oldState.splitItems = AS_SDK.Utility.ArrayHandler.splitItems(filteredItems, this.state.maxLength);
+        oldState.filteredItems = oldState.splitItems[0];
+        oldState.navLength = oldState.splitItems.length;
 
         this.setState(oldState);
     }
 
-    clearFilters() {
+    changePage(index) {
         this.setState({
-            filteredItems: this.state.items,
+            index,
+            filteredItems: this.state.splitItems[index],
+        });
+    }
+
+    clearFilters() {
+
+        const splitItems = AS_SDK.Utility.ArrayHandler.splitItems(this.state.items, this.state.maxLength);
+
+        this.setState({
+            splitItems,
+            filteredItems: splitItems[0],
             cls: "",
             sect: "",
-            searchBar: ""
+            searchBar: "",
+            index: 0,
+            navLength: splitItems.length
         });
     }
 
@@ -98,7 +117,7 @@ class UserTable extends React.Component {
                 </section>
                 <JsonTable rows={this.state.filteredItems} columns={this.state.columns} className="table"/>
                 <hr/>
-                <Navigator length={this.state.navLength}/>
+                <Navigator length={this.state.navLength} onClick={this.changePage}/>
             </section>
         );
     }
