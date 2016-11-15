@@ -33,6 +33,7 @@ class UserTable extends React.Component {
         this.render = this.render.bind(this);
         this.onChange = this.onChange.bind(this);
         this.changePage = this.changePage.bind(this);
+        this.navigate = this.navigate.bind(this);
         this.clearFilters = this.clearFilters.bind(this);
     }
 
@@ -85,6 +86,24 @@ class UserTable extends React.Component {
         });
     }
 
+    navigate(direction) {
+
+        let index = this.state.index;
+
+        if (direction && this.state.index > 0) {
+            index--;
+        }
+
+        if (!direction && this.state.index < this.state.navLength - 1) {
+            index++;
+        }
+
+        this.setState({
+            index,
+            filteredItems: this.state.splitItems[index],
+        });
+    }
+
     clearFilters() {
 
         const splitItems = AS_SDK.Utility.ArrayHandler.splitItems(this.state.items, this.state.maxLength);
@@ -117,7 +136,8 @@ class UserTable extends React.Component {
                 </section>
                 <JsonTable rows={this.state.filteredItems} columns={this.state.columns} className="table"/>
                 <hr/>
-                <Navigator length={this.state.navLength} onClick={this.changePage}/>
+                <p>pagina {this.state.index + 1}</p>
+                <Navigator length={this.state.navLength} onItemClick={this.changePage} onArrowClick={this.navigate}/>
             </section>
         );
     }

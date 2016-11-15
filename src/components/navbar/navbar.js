@@ -1,6 +1,6 @@
 "use strict";
 import React from "react";
-import IconList from "../IconList/IconList.js";
+import IconList from "../iconList/iconList.js";
 import "bootstrap/dist/js/bootstrap.min";
 import "./navBar.scss";
 

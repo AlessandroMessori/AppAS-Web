@@ -14,7 +14,7 @@ class Navigator extends React.Component {
         let el = [];
 
         for (let i = 1; i <= this.props.length; i++) {
-            el.push(<li key={i} onClick={()=>this.props.onClick(i - 1)}>
+            el.push(<li key={i} onClick={()=>this.props.onItemClick(i - 1)}>
                 <a href="#">{i}</a>
             </li>);
         }
@@ -27,13 +27,13 @@ class Navigator extends React.Component {
         return (
             <nav aria-label="Page navigation">
                 <ul className="pagination">
-                    <li>
+                    <li onClick={()=>this.props.onArrowClick(true)}>
                         <a href="#" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
                     {this.getElements()}
-                    <li>
+                    <li onClick={()=>this.props.onArrowClick(false)}>
                         <a href="#" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
