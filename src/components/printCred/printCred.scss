@@ -1,0 +1,17 @@
+@import "../userTable/userTable";
+
+#printSection {
+  @extend #userTableSection;
+  text-align: center;
+
+  ul.list {
+    list-style-type: none;
+
+    li {
+      margin: 0 25%;
+      width: 50%;
+    }
+
+  }
+
+}

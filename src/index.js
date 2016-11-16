@@ -2,11 +2,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {Router, Route, IndexRoute, browserHistory} from "react-router";
-import UserForm from "./components/userForm/userForm";
 import Navbar from "./components/navbar/navbar";
-import UserTable from "./components/userTable/userTable";
 import Sidebar from "./components/sidebar/sidebar";
 import LoginPage from "./components/loginPage/loginPage";
+import UserForm from "./components/userForm/userForm";
+import UserTable from "./components/userTable/userTable";
+import PrintCred from "./components/printCred/printCred";
 import AS_SDK from "./lib/index";
 
 AS_SDK.Auth.LoginHandler.logOut();
@@ -32,6 +33,7 @@ const cont = (
             <IndexRoute component={LoginPage}/>
             <Route path="/admin/users" component={UserTable}/>
             <Route path="/admin/addUser" component={UserForm}/>
+            <Route path="/admin/printUsers" component={PrintCred}/>
         </Route>
         <Route name="login" path="/" component={LoginPage}>
         </Route>
