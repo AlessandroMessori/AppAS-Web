@@ -40,6 +40,8 @@ class UserTable extends React.Component {
     componentDidMount() {
         AS_SDK.Database.UserHandler.getUsers(users => {
 
+            users = users.sort(AS_SDK.Utility.ArrayHandler.dynamicSort("mail"));
+
             let columns = Object.keys(users[0]);
             columns.push(
                 {
