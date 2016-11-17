@@ -1,6 +1,7 @@
 @import "../userTable/userTable";
 
 #printSection {
+
   @extend #userTableSection;
   text-align: center;
 

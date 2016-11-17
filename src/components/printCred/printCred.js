@@ -22,10 +22,13 @@ class PrintCred extends React.Component {
             fullItems: [],
             filteredItems: [],
             splitItems: [],
-            currentItems: []
+            currentItems: [],
+            index: 0
         };
 
         this.onChange = this.onChange.bind(this);
+        this.changePage = this.changePage.bind(this);
+        this.navigate = this.navigate.bind(this);
         this.getUserList = this.getUserList.bind(this);
     }
 
@@ -35,7 +38,7 @@ class PrintCred extends React.Component {
             const fullItems = users.sort(AS_SDK.Utility.ArrayHandler.dynamicSort("mail"));
             const filteredItems = AS_SDK.Utility.FilterHandler.filterItems(fullItems, "", this.state.cls, this.state.sez);
             const splitItems = AS_SDK.Utility.ArrayHandler.splitItems(filteredItems, this.state.maxLength);
-            const currentItems = splitItems[0];
+            const currentItems = splitItems[this.state.index];
             const navLength = splitItems.length;
 
             this.setState({fullItems, filteredItems, splitItems, currentItems, navLength});
@@ -49,9 +52,35 @@ class PrintCred extends React.Component {
         oldState.filteredItems = AS_SDK.Utility.FilterHandler.filterItems(oldState.fullItems, "", oldState.cls, oldState.sez);
         oldState.splitItems = AS_SDK.Utility.ArrayHandler.splitItems(oldState.filteredItems, oldState.maxLength);
         oldState.currentItems = oldState.splitItems[0];
+        oldState.index = 0;
         oldState.navLength = oldState.splitItems.length;
 
         this.setState(oldState);
+    }
+
+    changePage(index) {
+        this.setState({
+            index,
+            currentItems: this.state.splitItems[index]
+        });
+    }
+
+    navigate(direction) {
+
+        let index = this.state.index;
+
+        if (direction && this.state.index > 0) {
+            index--;
+        }
+
+        if (!direction && this.state.index < this.state.navLength - 1) {
+            index++;
+        }
+
+        this.setState({
+            index,
+            currentItems: this.state.splitItems[index]
+        });
     }
 
     getUserList() {
@@ -98,12 +127,11 @@ class PrintCred extends React.Component {
 
                 <hr/>
 
-                <Navigator length={this.state.navLength}/>
+                <Navigator length={this.state.navLength} onItemClick={this.changePage} onArrowClick={this.navigate}/>
                 <button className="btn btn-primary btn-lg" onClick="">Scarica Credenziali</button>
             </section>
         );
     }
-
 
 }
 
