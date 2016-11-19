@@ -10,6 +10,9 @@ module.exports = {
             "jsx": true
         }
     },
+    "globals": {
+        "jsPDF": false
+    },
     "rules": {
         "indent": [
             "error",

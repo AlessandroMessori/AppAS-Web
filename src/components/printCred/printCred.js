@@ -18,7 +18,7 @@ class PrintCred extends React.Component {
             numbers: this.data.numbers,
             sez: "Scientifico",
             cls: "1A",
-            maxLength: 3,
+            maxLength: 4,
             fullItems: [],
             filteredItems: [],
             splitItems: [],
@@ -30,6 +30,7 @@ class PrintCred extends React.Component {
         this.changePage = this.changePage.bind(this);
         this.navigate = this.navigate.bind(this);
         this.getUserList = this.getUserList.bind(this);
+        this.printCred = this.printCred.bind(this);
     }
 
     componentDidMount() {
@@ -93,7 +94,7 @@ class PrintCred extends React.Component {
 
         items.map(item => {
             users.push(
-                <li className="panel panel-default">
+                <li className="panel panel-default" key={item.mail}>
                     <div className="panel-body">
                         <h3>{item.name} {item.surname}</h3>
                         <h4>{item.cls} {item.number} {item.sect}</h4>
@@ -105,6 +106,13 @@ class PrintCred extends React.Component {
 
         return users;
 
+    }
+
+    printCred() {
+        const page = (this.state.index + 1).toString();
+        const title = this.state.cls + " " + this.state.sez + " Pag " + page;
+        const name = this.state.cls + this.state.sez + page;
+        AS_SDK.Utility.PDFHandler.generatePDF(title, name, this.state.currentItems);
     }
 
     render() {
@@ -128,7 +136,7 @@ class PrintCred extends React.Component {
                 <hr/>
 
                 <Navigator length={this.state.navLength} onItemClick={this.changePage} onArrowClick={this.navigate}/>
-                <button className="btn btn-primary btn-lg" onClick="">Scarica Credenziali</button>
+                <button className="btn btn-primary btn-lg" onClick={this.printCred}>Scarica Credenziali</button>
             </section>
         );
     }
