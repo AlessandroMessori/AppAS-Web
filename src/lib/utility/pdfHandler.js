@@ -18,8 +18,8 @@ class PDFHandler {
 
             doc.text(item.name + " " + item.surname, offsetX, offsetY + 20);
             doc.text(item.cls + " " + item.number + " " + item.sect, offsetX, offsetY + 30);
-            doc.text("Mail:" + item.mail, offsetX, offsetY + 40);
-            doc.text("Password" + item.pass, offsetX, offsetY + 50);
+            doc.text("Mail: " + item.mail, offsetX, offsetY + 40);
+            doc.text("Password: " + item.pass, offsetX, offsetY + 50);
 
             doc.line(10, offsetY + 60, 200, offsetY + 60);
         });

@@ -127,8 +127,6 @@ class PrintCred extends React.Component {
                 <ClassSelector value={this.state.cls} onChange={e => this.onChange(e, "cls")}
                                options={this.state.classes} placeholder="Classe"/>
 
-                <hr/>
-
                 <ul className="list">
                     {this.getUserList()}
                 </ul>
