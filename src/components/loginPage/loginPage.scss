@@ -46,16 +46,14 @@
 
   }
 
-  .text-alert {
-    color: red;
+  .text-result {
     margin-bottom: 10px;
     text-align: left;
   }
 
-  .text-success {
-    color: green;
-    margin-bottom: 10px;
-    text-align: left;
+  .text-alert {
+    color: red;
+    @extend .text-result;
   }
 
 }

@@ -32,6 +32,14 @@ export default class LoginForm extends React.Component {
     submit() {
 
         if (this.state.user.email && this.state.user.password) {
+
+            let resultText = (<div className="text-result">
+                <p>Caricamento...</p>
+                <br/>
+            </div>);
+
+            this.setState({resultText});
+
             AS_SDK.Auth.LoginHandler.login(this.state.user.email, this.state.user.password, this.login, (error)=> {
                 const resultText = (<div className="text-alert">
                     <p>{error}</p>
