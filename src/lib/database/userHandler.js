@@ -26,6 +26,7 @@ class UserHandler {
         console.log(sect);
         updates["/" + userId] = {
             mail,
+            defaultMail: mail,
             name,
             surname,
             pass,
@@ -35,10 +36,10 @@ class UserHandler {
         };
 
         Firebase.database().ref("Utenti").update(updates)
-            .then(()=> {
+            .then(() => {
                 callback();
             })
-            .catch((e)=> {
+            .catch((e) => {
                 alert(e);
             });
 
@@ -51,7 +52,7 @@ class UserHandler {
             const keys = Object.keys(snapshot.val());
             let users = [];
 
-            keys.map(user=> users.push(snapshot.val()[user]));
+            keys.map(user => users.push(snapshot.val()[user]));
 
             callback(users);
 

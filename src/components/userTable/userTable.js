@@ -40,7 +40,7 @@ class UserTable extends React.Component {
     componentDidMount() {
         AS_SDK.Database.UserHandler.getUsers(users => {
 
-            users = users.sort(AS_SDK.Utility.ArrayHandler.dynamicSort("mail"));
+            users = users.sort(AS_SDK.Utility.ArrayHandler.dynamicSort("defaultMail"));
 
             let columns = Object.keys(users[0]);
             columns.push(
@@ -49,7 +49,7 @@ class UserTable extends React.Component {
                     label: (<span>elimina</span>),
                     cell(item, columnKey) {
                         return (
-                            <button className="btn btn-danger" onClick={()=>alert("ciao")}>
+                            <button className="btn btn-danger" onClick={() => alert("ciao")}>
                                 <span className="glyphicon glyphicon-trash"/>
                             </button>
                         );

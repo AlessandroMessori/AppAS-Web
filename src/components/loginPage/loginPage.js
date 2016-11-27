@@ -9,7 +9,7 @@ export default class LoginPage extends React.Component {
         return (
             <section id="LoginPage">
                 <header>
-                    <h2>Admin App Ariosto Spallanzani</h2>
+                    <h2>Admin App AS</h2>
                     <LoginForm/>
                 </header>
             </section>
