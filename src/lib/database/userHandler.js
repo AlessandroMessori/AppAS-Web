@@ -6,16 +6,24 @@ class UserHandler {
     static createUser(mail, name, surname, pass, sect, cls, id, callback) {
 
         let oldPass = "";
+        let result = true;
         sect = (sect == "Scientifico") ? "S" : "C";
 
-        Firebase.auth().createUserWithEmailAndPassword(mail, pass).catch(error => alert(error));
+
+        Firebase.auth().createUserWithEmailAndPassword(mail, pass).catch(error => {
+            result = false;
+            alert(error);
+        });
 
         Firebase.auth().onAuthStateChanged(user => {
 
-            if (user != null && pass != oldPass) {
-                oldPass = pass;
-                UserHandler.memorizeUserData(mail, name, surname, pass, sect, cls, id, callback);
-            }
+            window.setTimeout(() => {
+                if (user != null && pass != oldPass && result) {
+                    oldPass = pass;
+                    UserHandler.memorizeUserData(mail, name, surname, pass, sect, cls, id, callback);
+                }
+            }, 2000);
+
         });
     }
 
@@ -23,7 +31,7 @@ class UserHandler {
         const updates = {};
         const newPostKey = Firebase.database().ref().child("Utenti").push().key;
         sect = (sect == "S") ? "Scientifico" : "Classico";
-        
+
 
         updates[newPostKey] = {
             mail,
