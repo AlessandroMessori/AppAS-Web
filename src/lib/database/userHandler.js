@@ -14,17 +14,18 @@ class UserHandler {
 
             if (user != null && pass != oldPass) {
                 oldPass = pass;
-                UserHandler.memorizeUserData(mail, name, surname, pass, sect, cls, id, user.uid, callback);
+                UserHandler.memorizeUserData(mail, name, surname, pass, sect, cls, id, callback);
             }
         });
     }
 
-    static memorizeUserData(mail, name, surname, pass, sect, cls, number, userId, callback) {
+    static memorizeUserData(mail, name, surname, pass, sect, cls, number, callback) {
         const updates = {};
-
+        const newPostKey = Firebase.database().ref().child("Utenti").push().key;
         sect = (sect == "S") ? "Scientifico" : "Classico";
-        console.log(sect);
-        updates["/" + userId] = {
+        
+
+        updates[newPostKey] = {
             mail,
             defaultMail: mail,
             name,
