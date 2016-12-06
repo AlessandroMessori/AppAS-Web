@@ -3,7 +3,7 @@ import Firebase from "firebase";
 
 class UserHandler {
 
-    static createUser(mail, name, surname, pass, sect, cls, id, callback) {
+    static createUser(mail, name, surname, pass, sect, cls, id, callback, errCallback) {
 
         let oldPass = "";
         let result = true;
@@ -12,7 +12,7 @@ class UserHandler {
 
         Firebase.auth().createUserWithEmailAndPassword(mail, pass).catch(error => {
             result = false;
-            alert(error);
+            errCallback(error);
         });
 
         Firebase.auth().onAuthStateChanged(user => {
@@ -20,14 +20,14 @@ class UserHandler {
             window.setTimeout(() => {
                 if (user != null && pass != oldPass && result) {
                     oldPass = pass;
-                    UserHandler.memorizeUserData(mail, name, surname, pass, sect, cls, id, callback);
+                    UserHandler.memorizeUserData(mail, name, surname, pass, sect, cls, id, callback, errCallback);
                 }
             }, 2000);
 
         });
     }
 
-    static memorizeUserData(mail, name, surname, pass, sect, cls, number, callback) {
+    static memorizeUserData(mail, name, surname, pass, sect, cls, number, callback, errCallback) {
         const updates = {};
         const newPostKey = Firebase.database().ref().child("Utenti").push().key;
         sect = (sect == "S") ? "Scientifico" : "Classico";
@@ -49,7 +49,7 @@ class UserHandler {
                 callback();
             })
             .catch((e) => {
-                alert(e);
+                errCallback(e);
             });
 
     }

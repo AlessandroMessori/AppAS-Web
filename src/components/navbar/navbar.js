@@ -20,7 +20,7 @@ export default class Navbar extends React.Component {
                 </div>
                 <div className="navbar-collapse collapse">
                     <ul className="nav navbar-nav">
-                        <IconList id="iconList"/>
+                        <IconList id=" iconList"/>
                     </ul>
                 </div>
             </nav>

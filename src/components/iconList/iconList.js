@@ -2,6 +2,7 @@
 import React from "react";
 import {Link, browserHistory} from "react-router";
 import AS_SDK from "../../lib/index";
+import "./iconList.scss";
 
 export default class IconList extends React.Component {
 
@@ -28,24 +29,25 @@ export default class IconList extends React.Component {
         };
     }
 
+
     logOut() {
-        AS_SDK.Auth.LoginHandler.logOut(()=> browserHistory.push("/"));
+        AS_SDK.Auth.LoginHandler.logOut(() => browserHistory.push("/"));
     }
 
     render() {
         return (
-            <ul className="nav nav-sidebar">
+            <ul className="nav nav-sidebar" id="iconList">
                 {this.state.routes.map((item) => {
                     return (<li key={item.text}>
                         <Link to={item.link}>
-                            <span className={item.icon}> {item.text}</span>
+                            <span className={item.icon + " link"}> {item.text}</span>
                         </Link>
                     </li>);
                 })
                 }
                 <li onClick={this.logOut}>
                     <Link>
-                        <span className="glyphicon glyphicon-log-out"> Esci</span>
+                        <span className="glyphicon glyphicon-log-out link"> Esci</span>
                     </Link>
                 </li>
             </ul>

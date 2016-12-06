@@ -2,6 +2,7 @@
 import React from "react";
 import AS_SDK from "../../lib/index";
 import ClassSelector from "../classSelector/classSelector";
+import Spinner from "../spinner/spinner";
 import "./userForm.scss";
 
 
@@ -20,11 +21,13 @@ class UserForm extends React.Component {
             surname: "Cognome",
             sez: "",
             cls: "",
-            number: ""
+            number: "",
+            loading: false
         };
 
         this.handleTextChange = this.handleTextChange.bind(this);
         this.getNewUserData = this.getNewUserData.bind(this);
+        this.getSpinner = this.getSpinner.bind(this);
         AS_SDK.Database.UserHandler.getUsers();
     }
 
@@ -59,10 +62,11 @@ class UserForm extends React.Component {
 
                 <button className="btn btn-primary btn-lg" onClick={this.getNewUserData}>Aggiungi
                 </button>
+
+                {this.getSpinner()}
             </section>
         );
     }
-
 
     handleTextChange(e, source) {
         const oldState = this.state;
@@ -88,9 +92,32 @@ class UserForm extends React.Component {
             const mail = this.state.cls + section + this.state.number + "@ariostospallanzani.com";
             const password = AS_SDK.Utility.StringHandler.getRandomString(6);
 
-            AS_SDK.Database.UserHandler.createUser(mail, name, surname, password, sez, cls, number, ()=>alert("utente creato"));
-        }
+            this.setState({loading: true});
+            document.body.style.opacity = "0.5";
+            document.body.style.pointerEvents = "none";
 
+            AS_SDK.Database.UserHandler.createUser(mail, name, surname, password, sez, cls, number,
+                () => {
+                    alert("utente creato");
+                    this.setState({loading: false});
+                    this.resetPage();
+                },
+                (e) => {
+                    alert(e);
+                    this.setState({loading: false});
+                    this.resetPage();
+                });
+        }
+    }
+
+
+    getSpinner() {
+        return (this.state.loading) ? (<Spinner/>) : null;
+    }
+
+    resetPage() {
+        document.body.style.opacity = "1";
+        document.body.style.pointerEvents = "initial";
     }
 
 }
