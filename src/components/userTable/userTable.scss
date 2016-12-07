@@ -30,9 +30,13 @@ $tablePadding: 2%;
     width: 100%;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1021px) {
 
     padding-right: 5%;
     padding-left: 5%;
+
+    .table, #pagSection {
+      display: none;
+    }
   }
 }

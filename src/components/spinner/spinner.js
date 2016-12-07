@@ -2,7 +2,7 @@
 import React from "react";
 import "./spinner.scss";
 
-export default class Spinner extends React.Component {
+class Spinner extends React.Component {
 
     constructor() {
         super();
@@ -17,3 +17,5 @@ export default class Spinner extends React.Component {
         );
     }
 }
+
+export default Spinner;

@@ -27,8 +27,15 @@ class App extends React.Component {
 
 }
 
+const resetState = () => {
+    if (document.getElementById("collapse")) {
+        document.getElementById("collapse").classList.remove("in");
+    }
+    window.scrollTo(0, 0);
+};
+
 const cont = (
-    <Router history={browserHistory} onUpdate={() => window.scrollTo(0, 0) }>
+    <Router history={browserHistory} onUpdate={resetState}>
         <Route name="app" path="/admin" component={App}>
             <IndexRoute component={LoginPage}/>
             <Route path="/admin/users" component={UserTable}/>

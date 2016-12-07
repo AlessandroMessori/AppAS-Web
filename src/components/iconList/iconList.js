@@ -12,7 +12,7 @@ export default class IconList extends React.Component {
             routes: [
                 {
                     "link": "/admin/addUser",
-                    "text": "Aggiungi Utente",
+                    "text": "Crea Utente",
                     "icon": "glyphicon glyphicon-plus"
                 },
                 {
@@ -22,7 +22,7 @@ export default class IconList extends React.Component {
                 },
                 {
                     "link": "/admin/printUsers",
-                    "text": "Stampa Dati Utenti",
+                    "text": "Stampa Dati",
                     "icon": "glyphicon glyphicon-print"
                 }
             ]
