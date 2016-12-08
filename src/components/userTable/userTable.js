@@ -126,19 +126,20 @@ class UserTable extends React.Component {
             <section id="userTableSection">
                 <h2 className="page-header">Tabella Studenti</h2>
                 <section className="row">
-                    <SearchBar onChange={e => this.onChange(e, "searchBar")} value={this.state.searchBar}/>
-
+                    <div id="searchBar">
+                        <SearchBar onChange={e => this.onChange(e, "searchBar")}
+                                   value={this.state.searchBar}/>
+                    </div>
                     <ClassSelector value={this.state.cls} onChange={e => this.onChange(e, "cls")}
                                    options={this.state.classes} placeholder="Classe"/>
 
                     <ClassSelector value={this.state.sect} onChange={e => this.onChange(e, "sect")}
                                    options={this.state.departments} placeholder="Sezione"/>
-
                     <button className="btn btn-default clearBtn" onClick={this.clearFilters}>Pulisci Filtri</button>
                 </section>
                 <JsonTable rows={this.state.filteredItems} columns={this.state.columns} className="table"/>
-                <hr/>
                 <section id="pagSection">
+                    <hr/>
                     <p>pagina {this.state.index + 1}</p>
                     <Navigator length={this.state.navLength} onItemClick={this.changePage}
                                onArrowClick={this.navigate}/>

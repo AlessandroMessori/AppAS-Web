@@ -10,20 +10,25 @@ $tablePadding: 2%;
     text-align: center;
   }
 
+  #searchBar {
+    display: inline;
+  }
+
   .clearBtn {
     position: relative;
-    left: 35px;
+    left: 20px;
+    height: 35px;
     bottom: 12px;
   }
 
   select {
-    font-size: 18px;
+    font-size: 15px;
     position: relative;
     bottom: 10px;
     left: 20px;
     margin-right: 1%;
     background-color: white;
-
+    height: 34px;
   }
 
   .table {
@@ -38,5 +43,13 @@ $tablePadding: 2%;
     .table, #pagSection {
       display: none;
     }
+
+    #searchBar {
+      margin-left: 5%;
+      margin-bottom: 7%;
+      display: block;
+    }
   }
+
 }
+
