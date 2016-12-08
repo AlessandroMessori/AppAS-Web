@@ -3,6 +3,7 @@ import React from "react";
 import AS_SDK from "../../lib/index";
 import ClassSelector from "../classSelector/classSelector";
 import Navigator from "../navigator/navigator";
+import UserCard from "../userCard/userCard";
 import "./printCred.scss";
 
 class PrintCred extends React.Component {
@@ -89,20 +90,9 @@ class PrintCred extends React.Component {
         const items = this.state.currentItems;
         let users = [];
 
-        if (items.length < 1)
-            return (<p>Non ci sono studenti per questa classe</p>);
+        if (items.length < 1) return (<p>Non ci sono studenti per questa classe</p>);
 
-        items.map(item => {
-            users.push(
-                <li className="panel panel-default" key={item.mail}>
-                    <div className="panel-body">
-                        <h3>{item.name} {item.surname}</h3>
-                        <h4>{item.cls} {item.number} {item.sect}</h4>
-                        <h4>Mail:{item.mail} Password:{item.pass}</h4>
-                    </div>
-                </li>
-            );
-        });
+        items.map(item => users.push(<UserCard className="listItem" user={item} key={item.mail}/>));
 
         return users;
 
@@ -140,7 +130,7 @@ class PrintCred extends React.Component {
     }
 
 }
- 
+
 export default PrintCred;
 
 

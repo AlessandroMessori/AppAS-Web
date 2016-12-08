@@ -9,13 +9,13 @@
     list-style-type: none;
     padding-left: 0;
 
-    li h4 {
+    .listItem h4 {
       font-size: 15px;
     }
 
     @media (min-width: 1024px) {
 
-      li {
+      .listItem {
         margin: 0 25%;
         width: 50%;
 

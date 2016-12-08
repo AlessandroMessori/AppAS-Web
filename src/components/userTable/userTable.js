@@ -1,6 +1,7 @@
 "use strict";
 import React from "react";
 import JsonTable from "react-json-table";
+import MobileTable from "../mobileTable/mobileTable";
 import SearchBar from "../searchBar/searchBar";
 import ClassSelector from "../classSelector/classSelector";
 import Navigator from "../navigator/navigator";
@@ -138,6 +139,7 @@ class UserTable extends React.Component {
                     <button className="btn btn-default clearBtn" onClick={this.clearFilters}>Pulisci Filtri</button>
                 </section>
                 <JsonTable rows={this.state.filteredItems} columns={this.state.columns} className="table"/>
+                <MobileTable items={this.state.filteredItems} id="mobileTable"/>
                 <section id="pagSection">
                     <hr/>
                     <p>pagina {this.state.index + 1}</p>

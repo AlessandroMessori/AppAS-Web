@@ -27,7 +27,7 @@ $tablePadding: 2%;
     bottom: 10px;
     left: 20px;
     margin-right: 1%;
-    background-color: white;
+    background-color: white !important;
     height: 34px;
   }
 
@@ -35,18 +35,27 @@ $tablePadding: 2%;
     width: 100%;
   }
 
+  #mobileTable {
+    display: none;
+  }
+
   @media (max-width: 1021px) {
 
     padding-right: 5%;
     padding-left: 5%;
 
-    .table, #pagSection {
+    #mobileTable {
+      display: block;
+      text-align: center;
+    }
+
+    .table {
       display: none;
     }
 
     #searchBar {
       margin-left: 5%;
-      margin-bottom: 7%;
+      margin-bottom: 3%;
       display: block;
     }
   }
